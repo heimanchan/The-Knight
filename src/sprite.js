@@ -71,3 +71,5 @@ class Sprite {
     this.sheetHeight = 42;
   }
 }
+
+export default Sprite;

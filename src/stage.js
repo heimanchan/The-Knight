@@ -52,7 +52,7 @@
 //   ctx.drawImage(background["Layer_0001_8"], 0, -310);
 // }
 
-import sprite from './sprite';
+import Sprite from './sprite'
 
 class Stage {
   constructor(canvas){
@@ -64,17 +64,17 @@ class Stage {
   }
 
   play() {
-    let knightImage = new Image();
-    knightImage.src = './sprite/knight/knight_idle.png';
+    // let knightImage = new Image();
+    // knightImage.src = './sprite/knight/knight_idle.png';
 
-    const knight = sprite({
-      context: this.ctx,
-      width: 48,
-      height: 48,
-      image: knightImage
-    })
+    // const knight = new Sprite({
+    //   context: this.ctx,
+    //   width: 48,
+    //   height: 48,
+    //   image: knightImage
+    // })
 
-    knight.render();
+    // knight.render();
   }
 }
 
