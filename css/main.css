@@ -1,0 +1,6 @@
+.canvas-box{
+  width: 640px;
+  height: 480px;
+  background: url("../img/background/Background.png");
+  background-position-y: -310px;
+}
