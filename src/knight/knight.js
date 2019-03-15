@@ -1,12 +1,17 @@
-import { knightIdleSprite } from './knight_idle';
+import { 
+  knightIdleSprite,
+  knightWalkSprite,
+  knightAttackSprite,
+  knightBlockSprite,
+  knightDeathSprite
+ } from './knight_sprites';
 
 class Knight {
   constructor() {
-    this.sprite = knightIdleSprite;
-    debugger
-    this.x = 100;
-    this.y = 335;
+    this.sprite = knightAttackSprite;
 
+    this.x = 150;
+    this.y = 335;
   }
 
   

@@ -1,5 +1,3 @@
-import knightIdleSprite from './knight/knight_idle'
-import { request } from 'https';
 import Knight from './knight/knight';
 
 class Game {
