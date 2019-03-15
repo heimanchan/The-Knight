@@ -1,4 +1,5 @@
-.canvas-box{
+/* .canvas-box{ */
+#game-canvas{
   width: 640px;
   height: 480px;
   background: url("../img/background/Background.png");

@@ -1,74 +1,73 @@
-// function sprite(options) {
-//   let that = {},
-//   frameIndex = 0,
-//   tickCount = 0,
-//   ticksPerFrame = options.ticksPerFrame || 0,
-//   numberOfFrames = options.numberOfFrames || 1;
+// const canWidth = 300;
+// const canHeight = 300;
 
-//   that.context = options.context;
-//   that.width = options.width;
-//   that.height = options.height;
-//   that.image = options.image;
+// let x = 100;
+// let y = 335;
 
-//   const canvas = document.getElementById("game-canvas");
+// let srcX;
+// let srcY;
 
-//   that.loop = options.loop
+// const sheetWidth = 168;
+// const sheetHeight = 42;
 
-//   that.update = function () {
-//     tickCount += 1;
+// const cols = 4;
+// const rows = 1
 
-//     if (tickCount > ticksPerFrame) {
-//       tickCount = 0;
+// let width = sheetWidth / cols; 
+// let height = sheetHeight / rows; 
 
-//       if (frameIndex < numberOfFrames - 1) {
-//         frameIndex += 1;
-//       } else if (that.loop) {
-//         frameIndex = 0;
-//       }
-//     }
-//   }
+// let currentFrame = 0;
 
-//   that.render = function () {
-//     that.context.drawImage(
-//       that.image,
-//       // srcX, srcY
-//       // 0, 0, that.width, that.height,
-//       frameIndex * that.width / numberOfFrames, 0, that.width / numberOfFrames, that.height,
-//       // canvas-destination x & y
-//       0, 0, that.width / numberOfFrames, that.height
-//     )
-//   }
+// const character = new Image();
+// character.src = "./sprite/knight/knight_idle.png";
 
-//   return that;
+// const canvas = document.getElementById("game-canvas");
+// canvas.width = canWidth;
+// canvas.height = canHeight;
+// const ctx = canvas.getContext("2d");
+
+// function updateFrame() {
+//   currentFrame = ++ currentFrame % cols;
+//   srcX = currentFrame * width;
+//   srcY = 0;
+
+//   ctx.clearRect(x, y, width, height)
 // }
 
-// let knightImage = new Image();
-// knightImage.src = './sprite/knight/knight_idle.png';
+// // game class
+// function drawImage() {
+//   updateFrame();
 
-// const knight = sprite({
-//   context: canvas.getContext("2d"),
-//   width: 48,
-//   height: 48,
-//   image: knightImage
-// })
+  // ctx.drawImage(character, 
+  //   srcX, srcY, width, height,
+  //   x, y, width * 2, height * 2,
+  // )
+// }
 
-// knight.render();
+// setInterval(function() {
+//   drawImage();
+// }, 300)
 
-// export default sprite;
 
 class Sprite {
-  constructor(){
-    this.canWidth = 650;
-    this.canHeight = 300;
+  constructor(img, sheetWidth, sheetHeight, rows, frameCount) {
+    this.img = img,
+    this.width = sheetWidth / frameCount;
+    this.height = sheetHeight / rows;
+    this.frameCount = frameCount;
+    this.currentFrame = 0;
+  }
 
-    this.x = 0;
-    this.y = 0;
+  srcX() {
+    return this.currentFrame * this.width;
+  }
 
-    this.srcX;
-    this.srcY;
+  srcY() {
+    return 0;
+  }
 
-    this.sheetWidth = 168;
-    this.sheetHeight = 42;
+  updateFrame() {
+    this.currentFrame = ++this.currentFrame % this.frameCount;
   }
 }
 

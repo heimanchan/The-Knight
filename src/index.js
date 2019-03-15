@@ -1,13 +1,12 @@
-import Stage from './stage';
 import Sprite from './sprite';
 import Game from './game'
 
 function component() {
   let element = document.createElement('div');
-  // element.appendChild(Stage)
   const canvas = document.getElementById("game-canvas");
-  let stage = new Stage(canvas)
-  stage.play();
+  const ctx = canvas.getContext("2d");
+  let game = new Game(canvas, ctx);
+  game.draw(10);
   return element;
 }
 
