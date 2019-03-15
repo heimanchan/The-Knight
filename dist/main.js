@@ -86,6 +86,42 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/controls.js":
+/*!*************************!*\
+  !*** ./src/controls.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _knight_knight_sprites__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./knight/knight_sprites */ \"./src/knight/knight_sprites.js\");\n\n\nconst controlListeners = game => {\n  const knight = game.knight;\n\n  window.addEventListener('keydown', ({key, repeat}) => {\n    if (repeat) return;\n\n    switch(key) {\n      case ('w' || false):\n        console.log(\"jump\");\n        knight.sprite = _knight_knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightBlockSprite\"];\n        break;\n      case('a' || false):\n        console.log(\"left\");\n        knight.toLeft();\n        break;\n      case('d' || false):\n        console.log(knight.physics.dRight);\n        knight.toRight();\n        break;\n      case ('j'):\n        console.log(\"attack\");\n        knight.sprite = _knight_knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightAttackSprite\"];\n        break;\n      default:\n        console.log(\"idle\");\n        knight.sprite = _knight_knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightIdleSprite\"];\n        return;\n    }\n  })\n\n  window.addEventListener('keyup', ({key}) => {\n    knight.stop(key);\n  })\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (controlListeners);\n\n//# sourceURL=webpack:///./src/controls.js?");
+
+/***/ }),
+
+/***/ "./src/enemy/enemy.js":
+/*!****************************!*\
+  !*** ./src/enemy/enemy.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _enemy_sprites__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./enemy_sprites */ \"./src/enemy/enemy_sprites.js\");\n\n\nclass Enemy {\n  constructor() {\n    this.sprite = _enemy_sprites__WEBPACK_IMPORTED_MODULE_0__[\"enemytDeathSprite\"];\n\n    this.x = 350;\n    this.y = 340;\n  }\n\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Enemy);\n\n//# sourceURL=webpack:///./src/enemy/enemy.js?");
+
+/***/ }),
+
+/***/ "./src/enemy/enemy_sprites.js":
+/*!************************************!*\
+  !*** ./src/enemy/enemy_sprites.js ***!
+  \************************************/
+/*! exports provided: enemytWalkSprite, enemytDeathSprite */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"enemytWalkSprite\", function() { return enemytWalkSprite; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"enemytDeathSprite\", function() { return enemytDeathSprite; });\n/* harmony import */ var _sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sprite */ \"./src/sprite.js\");\n\n\nconst enemytWalk = new Image();\nconst enemytDeath = new Image();\n\nenemytWalk.src = \"./sprite/enemy.png\";\nenemytDeath.src = \"./sprite/enemy_death.png\";\n\nconst enemytWalkSprite = new _sprite__WEBPACK_IMPORTED_MODULE_0__[\"default\"](enemytWalk, 960, 80, 1, 12);\nconst enemytDeathSprite = new _sprite__WEBPACK_IMPORTED_MODULE_0__[\"default\"](enemytDeath, 960, 80, 1, 12);\n\n//# sourceURL=webpack:///./src/enemy/enemy_sprites.js?");
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -94,7 +130,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _knight_knight__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./knight/knight */ \"./src/knight/knight.js\");\n\n\nclass Game {\n  constructor(canvas, ctx){\n    this.canvas = canvas;\n    this.ctx = ctx;\n    this.canvas.width = 640;\n    this.canvas.height = 480;\n    document.body.appendChild(this.canvas);\n    this.knight = new _knight_knight__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n  }\n\n  draw(fps) {\n    const fpsInterval = 1000 / fps;\n    let then = performance.now();\n\n    const animate = () => {\n      requestAnimationFrame(animate);\n\n      const now = performance.now();\n      const elapsed = now - then;\n\n      if (elapsed > fpsInterval) {\n        then = now - (elapsed % fpsInterval);\n\n        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);\n\n        // extract to drawKnight(ctx) later\n        const knight = this.knight;\n        this.ctx.drawImage(knight.sprite.img,\n          knight.sprite.srcX(), \n          knight.sprite.srcY(), \n          knight.sprite.width, \n          knight.sprite.height,\n          knight.x, \n          knight.y, \n          knight.sprite.width * 2, \n          knight.sprite.height * 2,\n        )\n        knight.sprite.updateFrame();\n        // extract to drawKnight(ctx) later\n      }\n    };\n    animate();\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _knight_knight__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./knight/knight */ \"./src/knight/knight.js\");\n/* harmony import */ var _enemy_enemy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./enemy/enemy */ \"./src/enemy/enemy.js\");\n\n\n\nclass Game {\n  constructor(canvas, ctx){\n    this.canvas = canvas;\n    this.ctx = ctx;\n    this.canvas.width = 640;\n    this.canvas.height = 480;\n    document.body.appendChild(this.canvas);\n    this.knight = new _knight_knight__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n    this.enemy = new _enemy_enemy__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n  }\n\n  draw(fps) {\n    const fpsInterval = 1000 / fps;\n    let then = performance.now();\n\n    //update loop\n    const animate = () => {\n      requestAnimationFrame(animate);\n\n      const now = performance.now();\n      const elapsed = now - then;\n\n      if (elapsed > fpsInterval) {\n        then = now - (elapsed % fpsInterval);\n\n        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);\n\n        // extract to drawKnight(ctx) later\n        const knight = this.knight;\n        if (knight.isOutBound) knight.resetPosition();\n        this.ctx.drawImage(knight.sprite.img,\n          knight.sprite.srcX(), \n          knight.sprite.srcY(), \n          knight.sprite.width, \n          knight.sprite.height,\n          knight.physics.x,\n          knight.physics.y,\n          knight.sprite.width * 2, \n          knight.sprite.height * 2,\n        )\n        knight.sprite.updateFrame();\n        knight.physics.updatePos();\n        // extract to drawKnight(ctx) later\n\n        // extract to drawKnight(ctx) later\n        const enemy = this.enemy;\n        this.ctx.drawImage(enemy.sprite.img,\n          enemy.sprite.srcX(),\n          enemy.sprite.srcY(),\n          enemy.sprite.width,\n          enemy.sprite.height,\n          enemy.x,\n          enemy.y,\n          enemy.sprite.width,\n          enemy.sprite.height,\n        )\n        enemy.sprite.updateFrame();\n        // extract to drawKnight(ctx) later\n\n        // handleInput(knight, elapsed);\n      }\n    };\n    animate();\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -106,7 +142,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _kni
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sprite */ \"./src/sprite.js\");\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\n\nfunction component() {\n  let element = document.createElement('div');\n  const canvas = document.getElementById(\"game-canvas\");\n  const ctx = canvas.getContext(\"2d\");\n  let game = new _game__WEBPACK_IMPORTED_MODULE_1__[\"default\"](canvas, ctx);\n  game.draw(10);\n  return element;\n}\n\ndocument.body.appendChild(component());\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sprite */ \"./src/sprite.js\");\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controls */ \"./src/controls.js\");\n\n\n\n\nfunction component() {\n  let element = document.createElement('div');\n  const canvas = document.getElementById(\"game-canvas\");\n  const ctx = canvas.getContext(\"2d\");\n  \n  let game = new _game__WEBPACK_IMPORTED_MODULE_1__[\"default\"](canvas, ctx);\n  Object(_controls__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(game);\n  game.draw(10);\n  \n  return element;\n}\n\ndocument.body.appendChild(component());\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -118,7 +154,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _spr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _knight_sprites__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./knight_sprites */ \"./src/knight/knight_sprites.js\");\n\n\nclass Knight {\n  constructor() {\n    this.sprite = _knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightAttackSprite\"];\n\n    this.x = 150;\n    this.y = 335;\n  }\n\n  \n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Knight);\n\n//# sourceURL=webpack:///./src/knight/knight.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _knight_sprites__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./knight_sprites */ \"./src/knight/knight_sprites.js\");\n/* harmony import */ var _physics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../physics */ \"./src/physics.js\");\n\n\n\nclass Knight {\n  constructor() {\n    this.sprite = _knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightIdleSprite\"];\n    this.x = 150;\n    this.y = 340;\n    this.physics = new _physics__WEBPACK_IMPORTED_MODULE_1__[\"default\"](150, 340);\n    this.faceLeft = false;\n    this.isMoving = false;\n  }\n\n  jump() {\n    this.sprite = _knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightBlockSprite\"];\n    this.sprite.faceLeft = this.faceLeft;\n    this.physics.dUp = 80;\n  }\n\n  toRight() {\n    if (this.moving) return;\n    this.isMoving = true;\n    this.sprite = _knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightWalkSprite\"];\n    this.faceLeft = false;\n    this.sprite.faceLeft = this.faceLeft;\n    this.physics.dLeft = 0;\n    this.physics.dRight = 10;\n  }\n\n  toLeft() {\n    if (this.moving) return;\n    this.isMoving = true;\n    this.sprite = _knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightWalkSprite\"];\n    // this.faceLeft = true;\n    this.sprite.faceLeft = this.faceLeft;\n    this.physics.dRight = 0;\n    this.physics.dLeft = 10;\n  }\n\n  stop(keyUp) {\n    if (keyUp === 'd' || 'RIGHT') {\n      this.isMoving = false;\n      this.physics.dRight = 0;\n    }\n\n    if (keyUp === 'a' || 'LEFT') {\n      this.isMoving = false;\n      this.physics.dLeft = 0;\n    }\n\n    if (this.physics.dX() === 0) {\n      this.sprite = _knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightIdleSprite\"];\n      this.sprite.faceLeft = this.faceLeft;\n    }\n  }\n\n  attack() {\n    this.sprite = _knight_sprites__WEBPACK_IMPORTED_MODULE_0__[\"knightAttackSprite\"];\n  }\n\n  isOutBound() {\n    return (this.physics.x < 0 || this.physics.x + this.sprite.width > 640)\n  }\n\n  resetPosition() {\n    if (this.physics.x < 0) {\n      this.physics.x = 0;\n    }\n\n    if (this.physics.x + this.sprite.width > 640) {\n      this.physics.x = 640 - this.sprite.width;\n    }\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Knight);\n\n//# sourceURL=webpack:///./src/knight/knight.js?");
 
 /***/ }),
 
@@ -134,6 +170,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./src/physics.js":
+/*!************************!*\
+  !*** ./src/physics.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass Physics {\n  constructor(x, y) {\n    this.x = x;\n    this.y = y;\n    this.dLeft = 0;\n    this.dRight = 0;\n    this.dUp = 0;\n    this.dDown = 0;\n  }\n\n  dX() {\n    return -this.dLeft + this.dRight;\n  }\n\n  dY() {\n    return -this.dUp + this.dDown;\n  }\n\n  updatePos() {\n    if (this.y < 335) {\n      this.dUp *= 0.9;\n      this.dDown += 5;\n    }\n\n    this.x += this.dX();\n    this.y += this.dY();\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Physics);\n\n//# sourceURL=webpack:///./src/physics.js?");
+
+/***/ }),
+
 /***/ "./src/sprite.js":
 /*!***********************!*\
   !*** ./src/sprite.js ***!
@@ -142,7 +190,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// const canWidth = 300;\n// const canHeight = 300;\n\n// let x = 100;\n// let y = 335;\n\n// let srcX;\n// let srcY;\n\n// const sheetWidth = 168;\n// const sheetHeight = 42;\n\n// const cols = 4;\n// const rows = 1\n\n// let width = sheetWidth / cols; \n// let height = sheetHeight / rows; \n\n// let currentFrame = 0;\n\n// const character = new Image();\n// character.src = \"./sprite/knight/knight_idle.png\";\n\n// const canvas = document.getElementById(\"game-canvas\");\n// canvas.width = canWidth;\n// canvas.height = canHeight;\n// const ctx = canvas.getContext(\"2d\");\n\n// function updateFrame() {\n//   currentFrame = ++ currentFrame % cols;\n//   srcX = currentFrame * width;\n//   srcY = 0;\n\n//   ctx.clearRect(x, y, width, height)\n// }\n\n// // game class\n// function drawImage() {\n//   updateFrame();\n\n  // ctx.drawImage(character, \n  //   srcX, srcY, width, height,\n  //   x, y, width * 2, height * 2,\n  // )\n// }\n\n// setInterval(function() {\n//   drawImage();\n// }, 300)\n\n\nclass Sprite {\n  constructor(img, sheetWidth, sheetHeight, rows, frameCount) {\n    this.img = img,\n    this.width = sheetWidth / frameCount;\n    this.height = sheetHeight / rows;\n    this.frameCount = frameCount;\n    this.currentFrame = 0;\n  }\n\n  srcX() {\n    return this.currentFrame * this.width;\n  }\n\n  srcY() {\n    return 0;\n  }\n\n  updateFrame() {\n    this.currentFrame = ++this.currentFrame % this.frameCount;\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Sprite);\n\n//# sourceURL=webpack:///./src/sprite.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n// const canWidth = 300;\n// const canHeight = 300;\n\n// let x = 100;\n// let y = 335;\n\n// let srcX;\n// let srcY;\n\n// const sheetWidth = 168;\n// const sheetHeight = 42;\n\n// const cols = 4;\n// const rows = 1\n\n// let width = sheetWidth / cols; \n// let height = sheetHeight / rows; \n\n// let currentFrame = 0;\n\n// const character = new Image();\n// character.src = \"./sprite/knight/knight_idle.png\";\n\n// const canvas = document.getElementById(\"game-canvas\");\n// canvas.width = canWidth;\n// canvas.height = canHeight;\n// const ctx = canvas.getContext(\"2d\");\n\n// function updateFrame() {\n//   currentFrame = ++ currentFrame % cols;\n//   srcX = currentFrame * width;\n//   srcY = 0;\n\n//   ctx.clearRect(x, y, width, height)\n// }\n\n// // game class\n// function drawImage() {\n//   updateFrame();\n\n  // ctx.drawImage(character, \n  //   srcX, srcY, width, height,\n  //   x, y, width * 2, height * 2,\n  // )\n// }\n\n// setInterval(function() {\n//   drawImage();\n// }, 300)\n\n\nclass Sprite {\n  constructor(img, sheetWidth, sheetHeight, rows, frameCount) {\n    this.img = img,\n    this.width = sheetWidth / frameCount;\n    this.height = sheetHeight / rows;\n    this.frameCount = frameCount;\n    this.currentFrame = 0;\n    this.faceLeft = false;\n  }\n\n  srcX() {\n    return this.currentFrame * this.width;\n  }\n\n  srcY() {\n    return this.faceLeft ? this.height : 0;\n  }\n\n  updateFrame() {\n    this.currentFrame = ++this.currentFrame % this.frameCount;\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Sprite);\n\n//# sourceURL=webpack:///./src/sprite.js?");
 
 /***/ })
 

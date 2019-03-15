@@ -56,6 +56,7 @@ class Sprite {
     this.height = sheetHeight / rows;
     this.frameCount = frameCount;
     this.currentFrame = 0;
+    this.faceLeft = false;
   }
 
   srcX() {
@@ -63,7 +64,7 @@ class Sprite {
   }
 
   srcY() {
-    return 0;
+    return this.faceLeft ? this.height : 0;
   }
 
   updateFrame() {
