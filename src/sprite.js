@@ -64,7 +64,8 @@ class Sprite {
   }
 
   srcY() {
-    return this.faceLeft ? this.height : 0;
+    // return this.faceLeft ? this.height : 0;
+    return 0;
   }
 
   updateFrame() {

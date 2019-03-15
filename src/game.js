@@ -29,22 +29,6 @@ class Game {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // extract to drawKnight(ctx) later
-        // const knight = this.knight;
-        // if (knight.isOutBound) knight.resetPosition();
-        // this.ctx.drawImage(knight.sprite.img,
-        //   knight.sprite.srcX(), 
-        //   knight.sprite.srcY(), 
-        //   knight.sprite.width, 
-        //   knight.sprite.height,
-        //   knight.physics.x,
-        //   knight.physics.y,
-        //   knight.sprite.width * 2, 
-        //   knight.sprite.height * 2,
-        // )
-        // knight.sprite.updateFrame();
-        // knight.physics.updatePos();
-        // extract to drawKnight(ctx) later
         drawKnight(this.knight, this.ctx);
 
         // extract to drawKnight(ctx) later

@@ -15,19 +15,21 @@ const controlListeners = game => {
     switch(key) {
       case ('w' || "UP"):
         console.log("jump");
-        knight.sprite = knightBlockSprite;
+        knight.jump();
         break;
       case('a' || "LEFT"):
         console.log("left");
+        console.log(knight.faceLeft)
         knight.toLeft();
         break;
       case('d' || "RIGHT"):
-        console.log(knight.physics.dRight);
+        console.log("right")
+        console.log(knight.faceLeft)
         knight.toRight();
         break;
       case ('j'):
         console.log("attack");
-        knight.sprite = knightAttackSprite;
+        knight.attack();
         break;
       default:
         console.log("idle");

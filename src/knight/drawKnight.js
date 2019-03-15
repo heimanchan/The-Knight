@@ -1,17 +1,21 @@
 const drawKnight = (knight, ctx) => {
   if (knight.isOutBound) knight.resetPosition();
+  // ctx.scale(-1, 1);
   ctx.drawImage(knight.sprite.img,
     knight.sprite.srcX(),
     knight.sprite.srcY(),
-    knight.sprite.width,
+    knight.sprite.width ,
     knight.sprite.height,
-    knight.physics.x,
-    knight.physics.y,
+    knight.velocity.x,
+    knight.velocity.y,
     knight.sprite.width * 2,
     knight.sprite.height * 2,
   )
   knight.sprite.updateFrame();
-  knight.physics.updatePos();
+  knight.velocity.updatePos();
+  knight.velocity.resetOnGround();
+  // TEST
+  // console.log(knight.velocity.dUp)
 }
 
 export default drawKnight;

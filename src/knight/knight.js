@@ -1,80 +1,94 @@
 import { 
   knightIdleSprite,
+  knightIdleLeftSprite,
   knightWalkSprite,
+  knightWalkLeftSprite,
   knightAttackSprite,
+  knightAttackLeftSprite,
   knightBlockSprite,
+  knightBlockLeftSprite,
   knightDeathSprite
  } from './knight_sprites';
-import Physics from '../physics';
+import Velocity from '../velocity';
 
 class Knight {
   constructor() {
     this.sprite = knightIdleSprite;
     this.x = 150;
     this.y = 340;
-    this.physics = new Physics(150, 340);
+    this.velocity = new Velocity(150, 340);
     this.faceLeft = false;
     this.isMoving = false;
   }
 
   jump() {
-    this.sprite = knightBlockSprite;
+    if (this.faceLeft === true) {
+      this.sprite = knightBlockLeftSprite
+    } else this.sprite = knightBlockSprite;
     this.sprite.faceLeft = this.faceLeft;
-    this.physics.dUp = 80;
+    this.velocity.dUp = 50;
+    // this.isJumping = true;
+    // this.velocity.dRight = 20;
+
   }
 
   toRight() {
+    this.faceLeft = false;
     if (this.moving) return;
     this.isMoving = true;
     this.sprite = knightWalkSprite;
-    this.faceLeft = false;
     this.sprite.faceLeft = this.faceLeft;
-    this.physics.dLeft = 0;
-    this.physics.dRight = 10;
+    this.velocity.dLeft = 0;
+    this.velocity.dRight = 12;
+    // if isJumping => dRight = 20
   }
 
   toLeft() {
+    this.faceLeft = true;
     if (this.moving) return;
     this.isMoving = true;
-    this.sprite = knightWalkSprite;
-    // this.faceLeft = true;
+    this.sprite = knightWalkLeftSprite;
     this.sprite.faceLeft = this.faceLeft;
-    this.physics.dRight = 0;
-    this.physics.dLeft = 10;
+    this.velocity.dRight = 0;
+    this.velocity.dLeft = 10;
   }
 
   stop(keyUp) {
     if (keyUp === 'd' || 'RIGHT') {
       this.isMoving = false;
-      this.physics.dRight = 0;
+      this.velocity.dRight = 0;
     }
 
     if (keyUp === 'a' || 'LEFT') {
       this.isMoving = false;
-      this.physics.dLeft = 0;
+      this.velocity.dLeft = 0;
     }
 
-    if (this.physics.dX() === 0) {
-      this.sprite = knightIdleSprite;
+    if (this.velocity.dX() === 0) {
       this.sprite.faceLeft = this.faceLeft;
+      if (this.faceLeft === true) {
+        this.sprite = knightIdleLeftSprite
+      } else this.sprite = knightIdleSprite;
     }
   }
 
   attack() {
-    this.sprite = knightAttackSprite;
+    if (this.faceLeft === true) {
+      this.sprite = knightAttackLeftSprite
+    } else this.sprite = knightAttackSprite;
   }
 
   isOutBound() {
-    return (this.physics.x < 0 || this.physics.x + this.sprite.width > 640)
+    return (this.velocity.x < 0 || this.velocity.x + this.sprite.width > 640)
   }
 
   resetPosition() {
-    if (this.physics.x < 0) {
-      this.physics.x = 0;
+    if (this.velocity.x < 0) {
+      this.velocity.x = 0;
     }
 
-    if (this.physics.x + this.sprite.width > 640) {
-      this.physics.x = 640 - this.sprite.width;
+    if (this.velocity.x + this.sprite.width > 640) {
+      this.velocity.x = 640 - this.sprite.width;
     }
   }
 }

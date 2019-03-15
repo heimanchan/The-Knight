@@ -1,4 +1,4 @@
-class Physics {
+class Velocity {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -19,12 +19,20 @@ class Physics {
   updatePos() {
     if (this.y < 335) {
       this.dUp *= 0.9;
-      this.dDown += 5;
+      this.dDown += 10;
     }
 
     this.x += this.dX();
     this.y += this.dY();
   }
+
+  resetOnGround() {
+    if (this.y + this.dY() + 10 > 340) {
+      this.y = 340;
+      this.dDown = 0;
+      this.dUp = 0;
+    }
+  }
 }
 
-export default Physics;
+export default Velocity;
