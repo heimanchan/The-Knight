@@ -3,8 +3,7 @@
 ## Overview
 The Knight is a simple 2D game to play and pick up. In the game, you control the character and must survive 60 seconds. Enemies will be running from the left to the right of the game view and vice versa. If you hit an enemy you lose. The player can either dodge the enemy or kill them by hitting the attack button. Every enemy kill is one score, so try to kill as many as possible. The speed and the amount of enemies will be increased by the time goes so try your best to survive!
 
-##Functionality
-
+## Functionality
 * Players can move the character to the left or right as well as jumping on a surface
 * Players can perform an attack by pressing a button
 * Enemies are spawned from the left or right of the game view and run to the opposite direction
