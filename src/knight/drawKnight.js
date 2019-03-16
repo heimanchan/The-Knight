@@ -14,8 +14,10 @@ const drawKnight = (knight, ctx) => {
   knight.sprite.updateFrame();
   knight.velocity.updatePos();
   knight.velocity.resetOnGround();
+  
   // TEST
-  // console.log(knight.velocity.dUp)
+  console.log(`Air: ${knight.velocity.isInTheAir()}, dLeft: ${knight.velocity.dLeft}, dRight: ${knight.velocity.dRight}
+  `)
 }
 
 export default drawKnight;

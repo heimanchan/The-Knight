@@ -45,8 +45,6 @@ class Game {
         )
         enemy.sprite.updateFrame();
         // extract to drawKnight(ctx) later
-
-        // handleInput(knight, elapsed);
       }
     };
     animate();

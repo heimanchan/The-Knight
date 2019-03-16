@@ -32,8 +32,6 @@ const controlListeners = game => {
         knight.attack();
         break;
       default:
-        console.log("idle");
-        knight.sprite = knightIdleSprite;
         return;
     }
   })

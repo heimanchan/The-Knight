@@ -26,7 +26,12 @@ class Velocity {
     this.y += this.dY();
   }
 
+  isInTheAir() {
+    return this.y < 340
+  }
+
   resetOnGround() {
+    // below the ground
     if (this.y + this.dY() + 10 > 340) {
       this.y = 340;
       this.dDown = 0;

@@ -14,22 +14,22 @@ import Velocity from '../velocity';
 class Knight {
   constructor() {
     this.sprite = knightIdleSprite;
-    this.x = 150;
-    this.y = 340;
     this.velocity = new Velocity(150, 340);
     this.faceLeft = false;
     this.isMoving = false;
+    this.isJumping = this.velocity.isInTheAir();
   }
 
   jump() {
     if (this.faceLeft === true) {
-      this.sprite = knightBlockLeftSprite
-    } else this.sprite = knightBlockSprite;
+      this.sprite = knightBlockLeftSprite;
+      this.velocity.dLeft = 18;
+    } else {
+      this.sprite = knightBlockSprite;
+      this.velocity.dRight = 18;
+    }
     this.sprite.faceLeft = this.faceLeft;
     this.velocity.dUp = 50;
-    // this.isJumping = true;
-    // this.velocity.dRight = 20;
-
   }
 
   toRight() {
@@ -40,7 +40,6 @@ class Knight {
     this.sprite.faceLeft = this.faceLeft;
     this.velocity.dLeft = 0;
     this.velocity.dRight = 12;
-    // if isJumping => dRight = 20
   }
 
   toLeft() {
@@ -50,7 +49,7 @@ class Knight {
     this.sprite = knightWalkLeftSprite;
     this.sprite.faceLeft = this.faceLeft;
     this.velocity.dRight = 0;
-    this.velocity.dLeft = 10;
+    this.velocity.dLeft = 12;
   }
 
   stop(keyUp) {
@@ -63,6 +62,10 @@ class Knight {
       this.isMoving = false;
       this.velocity.dLeft = 0;
     }
+
+    // if (keyUp === 'w' || 'UP') {
+    //   this.isJumping = false;
+    // }
 
     if (this.velocity.dX() === 0) {
       this.sprite.faceLeft = this.faceLeft;
