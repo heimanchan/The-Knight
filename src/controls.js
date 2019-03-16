@@ -1,14 +1,6 @@
-import {
-  knightIdleSprite,
-  knightWalkSprite,
-  knightAttackSprite,
-  knightBlockSprite,
-  knightDeathSprite
-} from './knight/knight_sprites';
-
 const controlListeners = game => {
   const knight = game.knight;
-
+  
   window.addEventListener('keydown', ({key, repeat}) => {
     if (repeat) return;
 

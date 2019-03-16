@@ -16,8 +16,8 @@ const drawKnight = (knight, ctx) => {
   knight.velocity.resetOnGround();
   
   // TEST
-  console.log(`Air: ${knight.velocity.isInTheAir()}, dLeft: ${knight.velocity.dLeft}, dRight: ${knight.velocity.dRight}
-  `)
+  // console.log(`Air: ${knight.velocity.isInTheAir()}, dLeft: ${knight.velocity.dLeft}, dRight: ${knight.velocity.dRight}`)
+  console.log(`x: ${knight.velocity.x} srcX: ${knight.sprite.width}`)
 }
 
 export default drawKnight;

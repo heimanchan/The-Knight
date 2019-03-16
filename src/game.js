@@ -1,6 +1,7 @@
 import Knight from './knight/knight';
 import drawKnight from './knight/drawKnight';
 import Enemy from './enemy/enemy';
+import { checkCollisions } from './collisions'
 
 class Game {
   constructor(canvas, ctx){
@@ -38,13 +39,17 @@ class Game {
           enemy.sprite.srcY(),
           enemy.sprite.width,
           enemy.sprite.height,
-          enemy.x,
-          enemy.y,
+          enemy.velocity.x,
+          enemy.velocity.y,
           enemy.sprite.width,
           enemy.sprite.height,
         )
         enemy.sprite.updateFrame();
+        console.log(`Enemy x: ${enemy.velocity.x} srcX: ${enemy.sprite.width}`)
+
         // extract to drawKnight(ctx) later
+
+        checkCollisions(this.knight, enemy)
       }
     };
     animate();
