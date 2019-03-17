@@ -7,7 +7,6 @@ import {
   knightAttackLeftSprite,
   knightBlockSprite,
   knightBlockLeftSprite,
-  knightDeathSprite
  } from './knight_sprites';
 import Velocity from '../velocity';
 
@@ -63,9 +62,9 @@ class Knight {
       this.velocity.dLeft = 0;
     }
 
-    // if (keyUp === 'w' || 'UP') {
-    //   this.isJumping = false;
-    // }
+    if (keyUp === 'w' || 'UP') {
+      this.isJumping = false;
+    }
 
     if (this.velocity.dX() === 0) {
       this.sprite.faceLeft = this.faceLeft;
@@ -79,6 +78,7 @@ class Knight {
     if (this.faceLeft === true) {
       this.sprite = knightAttackLeftSprite
     } else this.sprite = knightAttackSprite;
+
   }
 
   isOutBound() {
