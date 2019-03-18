@@ -1,6 +1,6 @@
 const controlListeners = game => {
   // const knight = game.knight;
-  const {knight} = game.entities;
+  const knight = game.knight;
   
   window.addEventListener('keydown', ({key, repeat}) => {
     if (repeat) return;

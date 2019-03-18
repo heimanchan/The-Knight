@@ -1,26 +1,22 @@
-import { enemytWalkSprite, enemytDeathSprite } from './enemy_sprites';
+import { 
+  enemytWalkSprite, 
+  enemytWalkFromRightSprite, 
+  enemytDeathSprite 
+} from './enemy_sprites';
 import Velocity from '../velocity'
 
 class Enemy {
-  constructor() {
-    this.sprite = enemytWalkSprite;
-    this.velocity = new Velocity(400, 340);
-    this.velocity.dLeft = 5;  
+  constructor(speed, bonus) {
+    this.fromLeft = Math.random() < 0.5 ? 0 : true, false
+    this.sprite = this.fromLeft ? enemytWalkSprite : enemytWalkFromRightSprite;
+    this.velocity = new Velocity(this.fromLeft ? 0 : 620, 340);
+    this.velocity.dLeft = this.fromLeft ? 0 : speed || 3;
+    this.velocity.dRight = this.fromLeft ? speed || 3 : 0;
+    this.bonus = bonus || false;
   }
 
-  // static enemySpawn(now) {
-  //   const enemies = [];
-  //   for (let i = 0; i < 10; i++) {
-  //   // for (let i = 0; i<(now/3000); i++) {
-  //     enemies.push(new Enemy);
-  //   }
-
-  //   return enemies;
-  // }
-
-  enemyDead() {
-    // x: -100 dead
-
+  isOutScreen() {
+    return (this.velocity.x < 0 || this.velocity.x > 620)
   }
 }
 

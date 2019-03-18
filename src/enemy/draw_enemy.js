@@ -14,7 +14,6 @@ const drawEnemy = (knight, enemy, ctx) => {
   )
   ctx.restore();
 
-  checkCollisions(knight, enemy);
   enemy.velocity.updatePos();
   enemy.sprite.updateFrame();
 }
