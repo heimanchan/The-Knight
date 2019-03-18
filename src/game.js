@@ -54,7 +54,7 @@ class Game {
         drawKnight(knight, this.ctx);
         if (parseInt((now / 1000) + 100) % 6 === 0) {
           //                                               max - min + 1 + min
-          enemies.push(new Enemy(Math.floor((Math.random() * 18 - 3 + 1) + 3)));
+          enemies.push(new Enemy(Math.floor((Math.random() * 15 - 3 + 1) + 3)));
         }
         
         // if (parseInt((now / 1000) + 1000) % 19 === 0) {

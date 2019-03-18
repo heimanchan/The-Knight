@@ -34,31 +34,13 @@ export const isHit = (knight, enemy) => {
   ))
 }
 
-// export const checkCollisions = (knight, enemy) => {
-//   if (!isHit(knight, enemy)) {
-//     if (collides(
-//       knight.faceLeft ? knight.velocity.x + 20 : knight.velocity.x, //x
-//       knight.velocity.y, //y
-//       knight.velocity.x + knight.sprite.width, //r
-//       knight.velocity.y + knight.sprite.height,//b
-//       enemy.velocity.x,
-//       enemy.velocity.y,
-//       enemy.velocity.x + enemy.sprite.width - 50,
-//       enemy.velocity.y + enemy.sprite.height
-//     )) {
-//       console.log("HIIIIIIIITTTT")
-//       knight.sprite = knightDeathSprite
-//     }
-//   } 
-// }
-
 export const checkCollisions = (knight, enemy) => {
   return (!isHit(knight, enemy) && collides(
       knight.faceLeft ? knight.velocity.x + 20 : knight.velocity.x, //x
       knight.velocity.y, //y
       knight.velocity.x + knight.sprite.width, //r
       knight.velocity.y + knight.sprite.height,//b
-      enemy.velocity.x,
+      enemy.velocity.x + 30,
       enemy.velocity.y,
       enemy.velocity.x + enemy.sprite.width - 50,
       enemy.velocity.y + enemy.sprite.height

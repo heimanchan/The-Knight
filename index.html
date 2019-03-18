@@ -8,11 +8,35 @@
 </head>
 
 <body id="root">
-
-  <h1>The Knight</h1>
-  <div class="canvas-box">
-    <canvas id="game-canvas"></canvas>
+  <div id="canvas-box">
+      <h1>The Knight</h1>
+      <div class="box">
+        <div class="box-title">Instructions</div>
+        <div>
+          Kill or dodge the enemies coming at you.
+        </div>
+        <div>
+          See if you can survive 60 seconds.
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-title">Controls</div>
+        <div>
+          <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/24x24/plain/keyboard_key_a.png">
+          <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/24x24/plain/keyboard_key_d.png">
+          <span>to walk</span>
+        </div>
+        <div>
+          <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/24x24/plain/keyboard_key_w.png">
+          <span>to jump</span>
+        </div>
+        <div>
+          <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/24x24/plain/keyboard_key_j.png">
+          <span>to attack</span>
+        </div>
+      </div>
   </div>
+  <canvas id="game-canvas"></canvas>
   <script src="./dist/main.js"></script>
 </body>
 

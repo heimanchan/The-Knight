@@ -4,4 +4,48 @@
   height: 480px;
   background: url("../img/background/Background.png");
   background-position-y: -310px;
+  margin: 0 auto;
+  
+}
+
+body {
+  display: flex;
+  background: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#canvas-box {
+  color: white;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 0;
+  /* text-align: center; */
+}
+
+.box > div {
+  padding: 5px;
+  position: relative;
+}
+
+.box span {
+  position: absolute;
+  top: 10px;
+  padding-left: 10px;
+}
+
+.box img {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.box-title {
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid lightgray;
 }
