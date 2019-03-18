@@ -1,7 +1,6 @@
 import { 
   enemytWalkSprite, 
   enemytWalkFromRightSprite, 
-  enemytDeathSprite 
 } from './enemy_sprites';
 import Velocity from '../velocity'
 
