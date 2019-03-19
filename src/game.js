@@ -54,11 +54,12 @@ class Game {
         drawKnight(knight, this.ctx);
         if (parseInt((now / 1000) + 20) % 7 === 0) {
           //                                               max - min + 1 + min
-          enemies.push(new Enemy(Math.floor((Math.random() * 10 - 3 + 1) + 3)));
+          // enemies.push(new Enemy(Math.floor((Math.random() * 10 - 3 + 1) + 3)));
+          enemies.push(new Enemy(Math.floor((Math.random() * 7 - 2 + 1) + 3)));
         }
         
         if (parseInt((now / 1000) + 1000) % 30 === 0) {
-          enemies.push(new Enemy(20, true));
+          enemies.push(new Enemy(15, true));
           console.log("BOOOOOONNNUUS")
         }
         
