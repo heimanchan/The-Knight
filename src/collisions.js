@@ -36,7 +36,7 @@ export const isHit = (knight, enemy) => {
 
 export const checkCollisions = (knight, enemy) => {
   return (!isHit(knight, enemy) && collides(
-      knight.faceLeft ? knight.velocity.x + 20 : knight.velocity.x, //x
+      knight.velocity.x, //x
       knight.velocity.y, //y
       knight.velocity.x + knight.sprite.width, //r
       knight.velocity.y + knight.sprite.height,//b
