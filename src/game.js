@@ -43,7 +43,6 @@ class Game {
       const knight = this.knight;
       const enemies = this.enemies;
 
-      // console.log(60 - parseInt(now / 1000))
       drawTimer(this.ctx, now)
       drawScore(this.ctx, this.score)
 

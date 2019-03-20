@@ -1,13 +1,16 @@
 export const drawGameOver = (ctx, score, now) => {
-  // ctx.fillStyle = 'rgb(0, 0, 0)';
   ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
   ctx.fillRect(0, 0, 640, 480);
 
   ctx.font = '40px Arial';
   ctx.fillStyle = 'white';
   ctx.textAlign = 'center';
+
+  let gameOverText;
+  (60 - parseInt(now / 1000) === 0) ? gameOverText = "Congraduations!" : "GAME OVER";
+  
   ctx.fillText(
-    'GAME OVER',
+    gameOverText,
     640 / 2,
     480 / 2 ,
   );
