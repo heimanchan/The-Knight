@@ -1,6 +1,6 @@
 # The Knight 
 
-[Live here](https://heimanchan.github.io/The-Knight/)
+### [Live here](https://heimanchan.github.io/The-Knight/)
 ![main](./img/the-knight.png)
 
 ## Overview
