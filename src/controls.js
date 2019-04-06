@@ -9,26 +9,20 @@ const controlListeners = game => {
     keysDown[key] = true;
 
     if ('a' in keysDown) {
-      console.log("left");
       knight.toLeft();
     }
 
     if ('d' in keysDown) {
-      console.log("Right");
       knight.toRight();
     }
 
     if ('w' in keysDown) {
-      console.log("Jump");
       knight.jump();
     }
 
     if ('j' in keysDown) {
-      console.log("attack");
       knight.attack();
     }
-    console.log(keysDown)
-    // key.preventDefault();
   }
 
   function keysReleased({key}) {

@@ -27,23 +27,6 @@ if (parseInt((now / 1000) + 20) % 7 === 0) {
   enemies.push(new Enemy(Math.floor((Math.random() * 7 - 2 + 1) + 3)));
 }
 ```
-
-## Implementation Timeline
-* Day 1
-  * Setup webpack, create basic entry file and skeleton of the project..
-  * Play around and experiment with canvas to get sprite animation rendered.
-* Day 2
-  * Character controls and movement
-  * Enemy movement
-  * Enemy speed increases by time
-* Day 3 
-  * Game logic
-  * Hitbox detection
-* Day 4
-  * Background music and sound effects
-  * Styling and game instructions
-  * Deploy
-
 ## Bonus features (in the future)
 * Moving obstacles will be generated from different directions
 * Rolling stones from left or right

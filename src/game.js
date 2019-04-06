@@ -58,7 +58,6 @@ class Game {
         
         if (parseInt((now / 1000) + 1000) % 30 === 0) {
           enemies.push(new Enemy(15, true));
-          console.log("BOOOOOONNNUUS")
         }
         
         drawEnemies(knight, enemies, this.ctx)
@@ -69,12 +68,10 @@ class Game {
               if (enemies[i].bonus) {
                 this.score += 1000;
               } else this.score += 100;
-              console.log("LEFT ATTAAAAAAAACK")
             } else {
                 if (enemies[i].bonus) {
                   this.score += 1000;
                 } else this.score += 100;
-              console.log("RIGHT ATTAAAAAAAACK")
             }
           }
           
