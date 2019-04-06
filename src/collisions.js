@@ -42,7 +42,7 @@ export const checkCollisions = (knight, enemy) => {
       knight.velocity.y + knight.sprite.height,//b
       enemy.velocity.x + 30,
       enemy.velocity.y,
-      enemy.velocity.x + enemy.sprite.width - 50,
+      enemy.velocity.x + enemy.sprite.width - 80,
       enemy.velocity.y + enemy.sprite.height
     )
   )
